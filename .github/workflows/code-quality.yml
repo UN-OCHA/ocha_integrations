@@ -24,4 +24,4 @@ jobs:
         ./vendor/bin/phpcs -p --report=full .
     - name: Check code duplication with phpcpd.
       run: |
-        ./vendor/bin/phpcpd . --names=*.php,*.inc,*.module,*.install --exclude=vendor
+        (./vendor/bin/phpcpd . --names=*.php,*.inc,*.module,*.install --exclude=vendor || exit 0)
