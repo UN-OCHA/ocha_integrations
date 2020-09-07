@@ -71,11 +71,18 @@ class ResetFacetsProcessorPrettyPath extends ResetFacetsProcessor implements Con
     $request = $this->requestStack->getMasterRequest();
     $query_params = $request->query->all();
 
-    if (isset($configuration['settings']['clear_string']) && $configuration['settings']['clear_string']) {
-      if (!empty($query_params['s'])) {
-        unset($query_params['s']);
-        $hasReset = TRUE;
+    if (!isset($configuration['settings']['clear_string']) || empty($configuration['settings']['clear_string'])) {
+      // Remove all parameters except s and keys.
+      foreach ($query_params as $key => $param) {
+        if ($key != 's' && $key != 'keys') {
+          unset($query_params[$key]);
+          $hasReset = TRUE;
+        }
       }
+    }
+    else {
+      $hasReset = count($query_params) > 0;
+      $query_params = [];
     }
 
     // Check if we have an active filter.
