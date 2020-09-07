@@ -69,6 +69,11 @@ class ResetStringProcessorOcha extends ProcessorPluginBase implements BuildProce
       return $build;
     }
 
+    // Make sure build is valid.
+    if (!isset($build['#items']) || !is_array($build['#items'])) {
+      return $build;
+    }
+
     unset($query_params['s']);
 
     $url = Url::createFromRequest($request);
