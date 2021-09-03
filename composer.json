@@ -7,6 +7,6 @@
     },
     "require-dev": {
         "drupal/coder": "^8.3",
-        "sebastian/phpcpd": "^4.1"
+        "sebastian/phpcpd": "^6.0"
     }
 }
