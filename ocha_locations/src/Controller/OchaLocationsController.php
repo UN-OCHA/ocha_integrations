@@ -232,7 +232,7 @@ class OchaLocationsController extends OchaIntegrationsController {
         $my_parent = &$my_parent->children[$parent];
       }
 
-      if (isset($row->parent[0]->id)) {
+      if (isset($row->parent[0]->id) && !empty($my_parent)) {
         $my_parent->children[$row->id] = (object) [
           'id' => $row->id,
           'name' => trim($row->label),
