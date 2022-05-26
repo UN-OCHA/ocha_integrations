@@ -145,6 +145,7 @@ class PersonEntityController extends ControllerBase implements ContainerInjectio
             '#suffix' => '</em>',
           ],
         ];
+        // @codingStandardsIgnoreLine
         foreach ($row as &$current) {
           $current['class'] = ['revision-current'];
         }
