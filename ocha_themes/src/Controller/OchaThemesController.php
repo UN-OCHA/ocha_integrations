@@ -118,7 +118,7 @@ class OchaThemesController extends OchaIntegrationsController {
 
     // Check if we have fewer themes then last time.
     if (count($keyed_data) < $this->state->get('ocha_themes_count')) {
-      $this->loggerFactory->get($this->loggerId)->error('We had @before themes before, now only @after', [
+      $this->loggerFactory->get($this->loggerId)->notice('We had @before themes before, now only @after', [
         '@before' => $this->state->get('ocha_themes_count'),
         '@after' => count($keyed_data),
       ]);

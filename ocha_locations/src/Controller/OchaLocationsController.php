@@ -190,7 +190,7 @@ class OchaLocationsController extends OchaIntegrationsController {
 
     // Check if we have fewer locations then last time.
     if (count($keyed_data) < $this->state->get('ocha_locations_count')) {
-      $this->loggerFactory->get($this->loggerId)->error('We had @before locations before, now only @after', [
+      $this->loggerFactory->get($this->loggerId)->notice('We had @before locations before, now only @after', [
         '@before' => $this->state->get('ocha_locations_count'),
         '@after' => count($keyed_data),
       ]);

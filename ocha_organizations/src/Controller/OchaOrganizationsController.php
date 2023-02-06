@@ -122,7 +122,7 @@ class OchaOrganizationsController extends OchaIntegrationsController {
 
     // Check if we have fewer organizations then last time.
     if (count($keyed_data) < $this->state->get('ocha_organizations_count')) {
-      $this->loggerFactory->get($this->loggerId)->error('We had @before organizations before, now only @after', [
+      $this->loggerFactory->get($this->loggerId)->notice('We had @before organizations before, now only @after', [
         '@before' => $this->state->get('ocha_organizations_count'),
         '@after' => count($keyed_data),
       ]);

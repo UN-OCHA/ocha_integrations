@@ -122,7 +122,7 @@ class OchaPopulationTypeController extends OchaIntegrationsController {
 
     // Check if we have fewer population type then last time.
     if (count($keyed_data) < $this->state->get('ocha_population_type_count')) {
-      $this->loggerFactory->get($this->loggerId)->error('We had @before population type before, now only @after', [
+      $this->loggerFactory->get($this->loggerId)->notice('We had @before population type before, now only @after', [
         '@before' => $this->state->get('ocha_population_type_count'),
         '@after' => count($keyed_data),
       ]);
