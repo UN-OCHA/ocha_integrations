@@ -94,7 +94,7 @@ class OchaGlobalCoordinationGroupsController extends OchaIntegrationsController 
 
     // Check if we have fewer countries then last time.
     if (count($keyed_data) < $this->state->get('ocha_global_coordination_groups_count')) {
-      $this->loggerFactory->get('ocha_global_coordination_groups')->error('We had @before countries before, now only @after', [
+      $this->loggerFactory->get('ocha_global_coordination_groups')->notice('We had @before countries before, now only @after', [
         '@before' => $this->state->get('ocha_global_coordination_groups_count'),
         '@after' => count($keyed_data),
       ]);
