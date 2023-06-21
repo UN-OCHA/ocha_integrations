@@ -122,7 +122,7 @@ class OchaLocalGroupsController extends OchaIntegrationsController {
 
     // Check if we have fewer local groups then last time.
     if (count($keyed_data) < $this->state->get('ocha_local_groups_count')) {
-      $this->loggerFactory->get('ocha_local_groups')->error('We had @before local groups before, now only @after', [
+      $this->loggerFactory->get('ocha_local_groups')->notice('We had @before local groups before, now only @after', [
         '@before' => $this->state->get('ocha_local_groups_count'),
         '@after' => count($keyed_data),
       ]);

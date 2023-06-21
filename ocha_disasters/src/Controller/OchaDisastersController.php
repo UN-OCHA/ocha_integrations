@@ -122,7 +122,7 @@ class OchaDisastersController extends OchaIntegrationsController {
 
     // Check if we have fewer disasters then last time.
     if (count($keyed_data) < $this->state->get('ocha_disasters_count')) {
-      $this->loggerFactory->get('ocha_disasters')->error('We had @before disasters before, now only @after', [
+      $this->loggerFactory->get('ocha_disasters')->notice('We had @before disasters before, now only @after', [
         '@before' => $this->state->get('ocha_disasters_count'),
         '@after' => count($keyed_data),
       ]);

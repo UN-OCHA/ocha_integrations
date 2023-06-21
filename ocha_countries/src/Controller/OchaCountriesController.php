@@ -94,7 +94,7 @@ class OchaCountriesController extends OchaIntegrationsController {
 
     // Check if we have fewer countries then last time.
     if (count($keyed_data) < $this->state->get('ocha_countries_count')) {
-      $this->loggerFactory->get('ocha_countries')->error('We had @before countries before, now only @after', [
+      $this->loggerFactory->get('ocha_countries')->notice('We had @before countries before, now only @after', [
         '@before' => $this->state->get('ocha_countries_count'),
         '@after' => count($keyed_data),
       ]);
