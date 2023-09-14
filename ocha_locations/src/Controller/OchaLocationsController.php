@@ -144,7 +144,7 @@ class OchaLocationsController extends OchaIntegrationsController {
           $data = $this->appendToCache($combined_data);
         }
 
-        $this->state->set('ocha_locations_fetch_and_sync_ts_' . $admin_level, REQUEST_TIME);
+        $this->state->set('ocha_locations_fetch_and_sync_ts_' . $admin_level, Drupal::time()->getRequestTime());
       }
 
       $this->saveToJson($data);
