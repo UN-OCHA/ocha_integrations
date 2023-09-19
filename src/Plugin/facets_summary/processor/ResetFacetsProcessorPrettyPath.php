@@ -3,13 +3,13 @@
 namespace Drupal\ocha_integrations\Plugin\facets_summary\processor;
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Http\RequestStack;
 use Drupal\Core\Link;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
 use Drupal\facets_summary\FacetsSummaryInterface;
 use Drupal\facets_summary\Plugin\facets_summary\processor\ResetFacetsProcessor;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Provides a processor that adds a link to reset facet filters.
@@ -28,7 +28,7 @@ class ResetFacetsProcessorPrettyPath extends ResetFacetsProcessor implements Con
   /**
    * The request stack.
    *
-   * @var \Symfony\Component\HttpFoundation\RequestStack
+   * @var \Drupal\Core\Http\RequestStack
    */
   protected $requestStack;
 
@@ -41,7 +41,7 @@ class ResetFacetsProcessorPrettyPath extends ResetFacetsProcessor implements Con
    *   The plugin_id for the plugin instance.
    * @param string $plugin_definition
    *   The plugin_definition for the plugin instance.
-   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
+   * @param \Drupal\Core\Http\RequestStack $request_stack
    *   The request stack.
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, RequestStack $request_stack) {
@@ -68,7 +68,7 @@ class ResetFacetsProcessorPrettyPath extends ResetFacetsProcessor implements Con
       return $build;
     }
 
-    $request = $this->requestStack->getMasterRequest();
+    $request = $this->requestStack->getMainRequest();
     $query_params = $request->query->all();
 
     if (!isset($configuration['settings']['clear_string']) || empty($configuration['settings']['clear_string'])) {
