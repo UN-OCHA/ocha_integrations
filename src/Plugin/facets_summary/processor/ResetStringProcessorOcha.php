@@ -2,6 +2,7 @@
 
 namespace Drupal\ocha_integrations\Plugin\facets_summary\processor;
 
+use Drupal\Core\Http\RequestStack;
 use Drupal\Core\Link;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Url;
@@ -10,7 +11,6 @@ use Drupal\facets_summary\Processor\BuildProcessorInterface;
 use Drupal\facets_summary\Processor\ProcessorPluginBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Provides a processor that adds a link to reset facet filters.
@@ -29,7 +29,7 @@ class ResetStringProcessorOcha extends ProcessorPluginBase implements BuildProce
   /**
    * The request stack.
    *
-   * @var \Symfony\Component\HttpFoundation\RequestStack
+   * @var \Drupal\Core\Http\RequestStack
    */
   protected $requestStack;
 
@@ -42,7 +42,7 @@ class ResetStringProcessorOcha extends ProcessorPluginBase implements BuildProce
    *   The plugin_id for the plugin instance.
    * @param string $plugin_definition
    *   The plugin_definition for the plugin instance.
-   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
+   * @param \Drupal\Core\Http\RequestStack $request_stack
    *   The request stack.
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, RequestStack $request_stack) {
@@ -61,7 +61,7 @@ class ResetStringProcessorOcha extends ProcessorPluginBase implements BuildProce
    * {@inheritdoc}
    */
   public function build(FacetsSummaryInterface $facets_summary, array $build, array $facets) {
-    $request = $this->requestStack->getMasterRequest();
+    $request = $this->requestStack->getMainRequest();
     $query_params = $request->query->all();
 
     $current_string = $request->query->get('s');
